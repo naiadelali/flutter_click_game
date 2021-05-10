@@ -10,10 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Click Game',
-        debugShowCheckedModeBanner: false,
-        theme: appTheme(),
-        home: ClickGamePage());
+    return  ClickGamePage();
   }
 }

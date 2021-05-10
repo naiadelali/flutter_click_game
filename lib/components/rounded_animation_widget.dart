@@ -42,6 +42,7 @@ class _RoundedAnimationWidgetState extends State<RoundedAnimationWidget> {
   late Timer _timer;
   int _countDown = 10;
   bool _isPlaying = false;
+  bool _isLight = false;
 
   void startGame() {
     _score = 0;
@@ -95,28 +96,39 @@ class _RoundedAnimationWidgetState extends State<RoundedAnimationWidget> {
                 onPressed: () => setState(() {
                   if (!_isPlaying) {
                     startGame();
+                    print(_color);
                   }
                 }),
                 child: (!_isPlaying)
                     ? Text('INICIAR')
                     : Text('Tempo: $_countDown'),
               ),
-              c(
-                curve: Curves.ease,
-                duration: Duration(milliseconds: 500),
-                alignment: _alignment,
-                child: Container(
-                  width: _width,
-                  height: _height,
-                  decoration: BoxDecoration(
-                    color: _color,
-                    borderRadius: BorderRadius.circular(_radius),
+            ],
+          ),
+        ),
+        (_isPlaying)
+            ? GestureDetector(
+                onTap: () => setState(() {
+                  _increaseScore();
+                  _randomize();
+                }),
+                child: AnimatedAlign(
+                  curve: Curves.ease,
+                  duration: Duration(milliseconds: 500),
+                  alignment: _alignment,
+                  child: AnimatedContainer(
+                    curve: Curves.ease,
+                    duration: Duration(milliseconds: 500),
+                    width: _width,
+                    height: _height,
+                    decoration: BoxDecoration(
+                      color: _color,
+                      borderRadius: BorderRadius.circular(_radius),
+                    ),
                   ),
                 ),
               )
-            ],
-          ),
-        )
+            : Container()
       ],
     );
   }
