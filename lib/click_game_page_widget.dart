@@ -16,37 +16,36 @@ class _ClickGamePageState extends State<ClickGamePage> {
       debugShowCheckedModeBanner: false,
       theme: _isLight ? lightTheme : darkTheme,
       home: Scaffold(
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              lampColor(),
-              RoundedAnimationWidget(),
-            ],
+        body: SafeArea(
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: Stack(
+              children: [
+                lampColor(),
+                RoundedAnimationWidget(),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Padding lampColor() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 60),
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            _isLight = !_isLight;
-          });
-        },
-        child: Container(
-          alignment: Alignment.topCenter,
-          child: RotationTransition(
-            turns: new AlwaysStoppedAnimation(180 / 360),
-            child: Image.asset(
-              'assets/images/lamp.png',
-              width: 60,
-            ),
+  Widget lampColor() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isLight = !_isLight;
+        });
+      },
+      child: Container(
+        alignment: Alignment.topCenter,
+        child: RotationTransition(
+          turns: new AlwaysStoppedAnimation(180 / 360),
+          child: Image.asset(
+            'assets/images/lamp.png',
+            width: 60,
           ),
         ),
       ),
