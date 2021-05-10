@@ -101,7 +101,9 @@ class _RoundedAnimationWidgetState extends State<RoundedAnimationWidget> {
                     ? Text('INICIAR')
                     : Text('Tempo: $_countDown'),
               ),
-              Align(
+              c(
+                curve: Curves.ease,
+                duration: Duration(milliseconds: 500),
                 alignment: _alignment,
                 child: Container(
                   width: _width,
